@@ -8,7 +8,9 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
+```
 
+```{r, echo = FALSE}
 # Writing function to roll one die
 
 roll1die <- function(){sample(x = 1:6, size = 1)}
@@ -21,6 +23,18 @@ roll2dice <- function(){roll1die() + roll1die()}
 
 map_int(1:10, ~roll2dice())
 
+# Plotting the roll dice function. First, make a tibble. Then plot it.
 
+dice_rolls <- tibble(rolls = map_int(1:1000, ~roll2dice()))
+
+ggplot(dice_rolls, aes(rolls)) + geom_bar()
+
+# or...
+
+hist(map_int(1:1000, ~roll2dice()))
+
+# For a distribution which more accurately reflects the probabilities of rolling each value...
+
+hist(map_int(1:100000, ~roll2dice()))
 ```
 
