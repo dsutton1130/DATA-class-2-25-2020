@@ -1,0 +1,26 @@
+---
+title: "Craps"
+author: "David Sutton"
+date: "2/25/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+
+# Writing function to roll one die
+
+roll1die <- function(){sample(x = 1:6, size = 1)}
+
+# writing function to roll two dice
+
+roll2dice <- function(){roll1die() + roll1die()}
+
+# Writing a function to roll two dice several times (10 times in this example)
+
+map_int(1:10, ~roll2dice())
+
+
+```
+
